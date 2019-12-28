@@ -20,7 +20,12 @@ layout: compress
 {% include header.html %}
 
   {% if page.featured-img %}
-  <div class="hero lazyload" data-bg="{{ site.url }}{{ site.baseurl }}/assets/img/posts/{{ page.featured-img }}.jpg">
+    {% if site.img_url %}
+      {% assign img_url = site.img_url %}
+    {% else %}
+      {% assign img_url = site.utl %}
+    {% endif %}
+  <div class="hero lazyload" data-bg="{{ img_url }}{% if site.img_baseurl %}{{ site.img_baseurl }}{% else %}{{ site.baseurl }}{% endif %}/assets/img/posts/{{ page.featured-img }}.jpg">
   {% else %}
   <div class="hero dark-bg">
   {% endif %}
@@ -62,6 +67,27 @@ layout: compress
         {{ content }}
 
       </article>
+
+      <div class="post-content controls__inner tags">
+        <div class="tags">
+          {% assign restaurant = page.restaurant %}
+          Restauracja:
+          <a href="{{ site.baseurl }}/restaurants/{{ restaurant }}">{{ restaurant }}</a>
+        </div>
+        <div class="tags">
+          {% assign location = page.location %}
+          Miejscowość:
+          <a href="{{ site.baseurl }}/locations/{{ location }}">{{ location }}</a>
+        </div>
+        <div class="tags">
+          {% assign tags = page.tags | sort %}
+          Tagi:
+          {% for tag in tags %}
+          <a href="{{ site.baseurl }}/tags/{{ tag }}">{{ tag }}</a>
+          {% endfor %}
+        </div>
+      </div>
+
       <div class="post-content controls__inner">
         <div class="controls__item prev">
           {% if page.previous.url %}
@@ -100,7 +126,7 @@ layout: compress
       <div class="container">
         <div class="post-content">
 
-          {% include disqus.html %}
+          {% include disqus_comments.html %}
 
         </div>
       </div>

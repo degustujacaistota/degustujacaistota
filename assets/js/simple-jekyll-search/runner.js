@@ -18,5 +18,6 @@ SimpleJekyllSearch({
         <dd>
           <p>{excerpt}</p>
         </dd>`,
-  noResultsText: "Nothing to found"
+  noResultsText: "Nothing to found",
+  limit: 12
 });

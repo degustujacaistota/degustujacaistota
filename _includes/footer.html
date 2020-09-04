@@ -3,10 +3,12 @@
     <nav class="social">
       {%- include social.html -%}
     </nav>
+    {% include footer/cookie-consent.html %}
     <span>&copy; 2019-{{ site.time | date: '%Y' }} {{ site.title | escape }}. All rights reserved.</span>
   </div>
 </footer>
-<script async src="{{ '/assets/js/bundle.js' | relative_url }}"></script>
+<script defer src="{{ '/assets/js/bundle.js' | relative_url }}"></script>
+<script defer src="{{ '/assets/js/cookie-consent.js' | relative_url }}"></script>
 {% if site.service_worker %}
 <script async>
   if ('serviceWorker' in navigator) {
